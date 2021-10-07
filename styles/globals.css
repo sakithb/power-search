@@ -1,16 +1,61 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@import url("/fonts/FiraSans.css");
+
+:root {
+    --primary-color-raw: 3, 181, 170;
+    --bg-color-dark-raw: 53, 53, 53;
+    --bg-color-medium-raw: 80, 80, 80;
+    --bg-color-light-raw: 115, 115, 115;
+
+    --primary-color: rgb(var(--primary-color-raw));
+    --bg-color-dark: rgb(var(--bg-color-dark-raw));
+    --bg-color-medium: rgb(var(--bg-color-medium-raw));
+    --bg-color-light: rgb(var(var(--bg-color-light-raw)));
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Fira Sans";
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #88d7fc;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.container div {
+    position: static !important;
+}
+
+.image {
+    position: relative !important;
+    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.description {
+    position: relative;
+    margin: 10px 0px 0px 0px;
+    text-transform: capitalize;
+}
+
+.title {
+    margin: 5px 0px;
+}
+
+.metadata {
+    font-size: smaller;
+    margin-bottom: 5px;
 }

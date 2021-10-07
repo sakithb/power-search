@@ -1,121 +1,179 @@
 .container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--bg-color-dark);
+    height: 100vh;
 }
 
-.main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer {
-  width: 100%;
-  height: 100px;
-  border-top: 1px solid #eaeaea;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
+.searchWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10vh;
 }
 
 .title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 500;
 }
 
-.title,
-.description {
-  text-align: center;
+.searchBoxWrapper {
+    display: inline-flex;
+    justify-content: center;
+    width: 75vw;
+    height: 32px;
+    margin-top: 10px;
 }
 
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
+.searchBox {
+    outline: none;
+    flex: 1;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    border-right-width: 0px;
+    border-radius: 99px 0% 0% 99px;
+    padding: 10px;
+    font-size: 1.2rem;
+    transition: border-color 0.2s;
 }
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+.searchBox:focus {
+    border-color: var(--primary-color);
 }
 
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-  margin-top: 3rem;
+.searchButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 0% 99px 99px 0%;
+    background: var(--primary-color);
+    padding: initial 10px;
+    cursor: pointer;
 }
 
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  width: 45%;
+.searchButton:hover svg {
+    transform: scale(0.9);
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
+.captionWrapper {
+    display: flex;
     flex-direction: column;
-  }
+    align-items: center;
+}
+
+.captionStart,
+.captionEnd {
+    font-size: 20px;
+    color: #fff;
+}
+
+.captionIcons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 50vw;
+}
+
+.captionIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    fill: #fff;
+    transition: background 0.2s;
+}
+
+@media screen and (min-width: 768px) {
+    .searchBoxWrapper {
+        width: 70vw;
+        height: 48px;
+        margin-top: 10px;
+    }
+    .searchButton {
+        padding: initial 20px;
+        font-size: 30px;
+    }
+    .searchBox {
+        padding: 20px;
+        font-size: 25px;
+    }
+    .title {
+        font-size: 3.2rem;
+    }
+    .captionIcons {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        width: 60vw;
+    }
+    .captionIcon {
+        padding: 15px;
+    }
+    .captionStart,
+    .captionEnd {
+        font-size: 32px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .searchBoxWrapper {
+        height: 50px;
+        width: 60vw;
+        margin-top: 20px;
+    }
+    .searchButton {
+        font-size: 28px;
+    }
+    .searchBox {
+        font-size: 24px;
+    }
+    .title {
+        font-size: 3.2rem;
+    }
+    .captionIcons {
+        width: 40vw;
+    }
+    .captionIcon {
+        padding: 20px;
+    }
+    .captionStart,
+    .captionEnd {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .captionIcons {
+        width: 60vw;
+    }
+    .searchBox {
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .captionIcons {
+        width: 70vw;
+    }
+    .searchBox {
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .title {
+        font-size: 28px;
+    }
+    .searchBoxWrapper {
+        height: 25px;
+    }
+    .searchBox {
+        font-size: 0.85rem;
+    }
 }

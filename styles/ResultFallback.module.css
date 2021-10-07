@@ -1,0 +1,63 @@
+@keyframes loading {
+    to {
+        background-position: 200% 0, 0 0;
+    }
+}
+
+.container {
+    display: grid;
+    grid-template-rows: min-content;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+            to right,
+            rgba(160, 160, 160, 0) 0%,
+            rgba(160, 160, 160, 0.3) 50%,
+            rgba(160, 160, 160, 0) 100%
+        ),
+        linear-gradient(to right, var(--bg-color-medium), var(--bg-color-medium));
+    background-position: -100% 0, 0 0;
+    background-size: 50% 100%, 100% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: minmax(15px, 14%) auto;
+    align-items: center;
+    background: #737373;
+    border-radius: 10px 10px 0 0;
+    padding: 6px;
+}
+
+.image {
+    border-radius: 99px;
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.title {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.subResults {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    .image {
+        padding: 2px;
+    }
+    .header {
+        padding: 4px;
+    }
+}

@@ -1,0 +1,129 @@
+.container {
+    display: grid;
+    grid-template-rows: min-content min-content auto;
+    background: var(--bg-color-dark);
+    height: 100vh;
+}
+
+.searchWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.searchBoxWrapper {
+    display: inline-flex;
+    justify-content: center;
+    width: 75vw;
+    height: 32px;
+    margin-top: 10px;
+}
+
+.searchBox {
+    outline: none;
+    flex: 1;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    border-right-width: 0px;
+    border-radius: 99px 0% 0% 99px;
+    padding: 10px;
+    font-size: 1.2rem;
+    transition: border-color 0.2s;
+}
+
+.searchBox:focus {
+    border-color: var(--primary-color);
+}
+
+.searchButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 0% 99px 99px 0%;
+    background: var(--primary-color);
+    padding: initial 10px;
+    cursor: pointer;
+}
+
+.searchButton:hover svg {
+    transform: scale(0.9);
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: var(--bg-color-medium);
+}
+
+.optionsTitle {
+    color: #fff;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+
+.optionsDropdown {
+    width: 50%;
+}
+
+.optionsDropdown select {
+    padding: 5px 10px;
+    background: var(--bg-color-dark);
+    color: #fff;
+    fill: #fff;
+    border: none;
+    outline: none;
+    border-right: 10px solid var(--bg-color-dark);
+    border-radius: 99px;
+    width: 100%;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    justify-items: center;
+    overflow: auto;
+    padding: 10px;
+    gap: 10px;
+}
+
+@media screen and (max-width: 350px) {
+    .results {
+        grid-template-columns: 1fr;
+        padding: 5px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .searchWrapper {
+        flex-direction: row;
+        justify-content: initial;
+        margin: 20px;
+    }
+    .searchBoxWrapper {
+        margin-left: 10px;
+        margin-top: 0px;
+        width: 40vw;
+    }
+    .options {
+        justify-content: initial;
+        padding-left: 20px;
+    }
+    .optionsDropdown {
+        width: auto;
+    }
+}
