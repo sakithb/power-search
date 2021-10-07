@@ -27,7 +27,7 @@ const Unsplash: NextPage = () => {
         if (results && results.length > 0) {
             const processedResults = results.map((result, index) => (
                 <div key={index} className="container">
-                    <img className="image" src={result.imgUrl} alt="" layout="fill" />
+                    <img className="image" src={result.imgUrl} alt="" />
                     {result.description && <p className="description">{result.description}</p>}
                 </div>
             ));
