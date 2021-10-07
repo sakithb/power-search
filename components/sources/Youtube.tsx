@@ -18,7 +18,7 @@ interface youtubeResult {
 
 const searchOpts = {
     maxResults: 10,
-    key: "AIzaSyDNqYRDsb-JaUan7UdP05alvuGHWCD6NwY",
+    key: process.env.GOOGLE_KEY,
 };
 
 const Youtube: NextPage = () => {
