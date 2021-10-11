@@ -31,37 +31,6 @@
     font-size: 1.2rem;
 }
 
-.subResults {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    padding: 10px;
-}
-
-.subResult {
-    display: flex;
-    flex-direction: column;
-}
-
-.subResultTitle {
-    color: #fff;
-    font-weight: bold;
-    margin: 10px 0px;
-}
-
-.results {
-    display: flex;
-    flex-direction: column;
-}
-
-.result {
-    border-radius: 8px;
-    padding: 10px;
-    color: #fff;
-    background: #353535;
-    margin: 10px 0px;
-}
-
 @media screen and (min-width: 768px) {
     .container {
         width: 100%;
@@ -72,4 +41,107 @@
     .header {
         padding: 4px;
     }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    overflow: auto;
+    color: #fff;
+}
+
+/* Result Styles */
+.results {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.subresult {
+    display: flex;
+    flex-direction: column;
+}
+
+.subresult-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.subresult-metadata {
+    font-size: 0.9rem;
+    color: #dfdfdf;
+}
+
+.subresult-results {
+    display: flex;
+    flex-direction: column;
+}
+
+.result {
+    background: var(--bg-color-dark);
+    padding: 8px;
+    border-radius: 8px;
+    margin: 5px 0px;
+}
+
+.result-normal {
+    display: flex;
+    flex-direction: column;
+}
+
+.result-compact {
+    display: grid;
+    grid-template-columns: 30% auto;
+    grid-auto-rows: auto;
+    grid-template-areas:
+        "image header"
+        "image title"
+        "image description"
+        "image footer";
+}
+
+.result-header {
+    font-size: 0.9rem;
+    color: #dfdfdf;
+    grid-area: header;
+}
+
+.result-title {
+    font-size: 1rem;
+    grid-area: title;
+}
+
+.result-description {
+    font-size: 0.95rem;
+    color: #fcfcfc;
+    margin: 5px 0px;
+    grid-area: description;
+}
+
+.result-footer {
+    font-size: 0.9rem;
+    color: #dfdfdf;
+    grid-area: footer;
+}
+
+.result-image {
+    grid-area: image;
+    padding: 5px;
+    height: 100%;
+}
+
+.result-image div {
+    width: 100%;
+    height: 100%;
+}
+
+.result-image img {
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: auto !important;
+    max-width: none !important;
+    min-height: auto !important;
+    max-height: none !important;
 }

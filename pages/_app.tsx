@@ -11,6 +11,16 @@ export interface SourcesIF {
     };
 }
 
+export interface Result {
+    type: string;
+    header?: string; // Markdown
+    title?: string;
+    url?: string;
+    description?: string;
+    image?: string;
+    image_blurhash?: string;
+    footer?: string; // Markdown
+}
 export const sourcesContext = createContext<Partial<SourcesIF>>({});
 
 const PowerSearch = ({ Component, pageProps }: AppProps) => {
@@ -19,8 +29,8 @@ const PowerSearch = ({ Component, pageProps }: AppProps) => {
 
     useEffect(() => {
         (async () => {
-            const jsonSources = await (await fetch("/sources.json")).json();
-            setSources(jsonSources);
+            const jsonSources = await fetch("/sources.json");
+            setSources(await jsonSources.json());
             setPageLoaded(true);
         })();
     }, []);

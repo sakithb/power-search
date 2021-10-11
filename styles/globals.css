@@ -9,7 +9,7 @@
     --primary-color: rgb(var(--primary-color-raw));
     --bg-color-dark: rgb(var(--bg-color-dark-raw));
     --bg-color-medium: rgb(var(--bg-color-medium-raw));
-    --bg-color-light: rgb(var(var(--bg-color-light-raw)));
+    --bg-color-light: rgb(var(--bg-color-light-raw));
 }
 
 html,
