@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { queryContext } from "../pages/search";
+import { decode } from "blurhash";
 
 import Result from "./Result";
 import ResultFallback from "./ResultFallback";
@@ -21,10 +22,23 @@ interface RemoteResult {
         url?: string;
         description?: string;
         image?: string;
-        image_blurhash?: string;
         footer?: string; // Markdown
     }[];
 }
+
+const blurDataURL =
+    "data:image/png;base64,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";
+
+const useBlurHash = (blurHash: string, width = 500, height = 500) => {
+    const pixels = decode(blurHash, width, height);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    const imageData = ctx.createImageData(width, height);
+    imageData.data.set(pixels);
+    ctx.putImageData(imageData, 0, 0);
+
+    return canvas.toDataURL();
+};
 
 const getJSXResults = (remoteResult: RemoteResult[]) => (
     <div className={styles.results}>
@@ -32,21 +46,21 @@ const getJSXResults = (remoteResult: RemoteResult[]) => (
             <div key={index} className={styles.subresult}>
                 <div className={styles["subresult-title"]}>{subresult.title}</div>
                 <div className={styles["subresult-metadata"]}>
-                    <Markdown disallowedElements={["p"]} unwrapDisallowed={true}>
-                        {subresult.metadata}
-                    </Markdown>
+                    <Markdown>{subresult.metadata}</Markdown>
                 </div>
                 <div className={styles["subresult-results"]}>
                     {subresult.results.map((result, resultIndex) => (
                         <div
                             key={resultIndex}
                             className={`${styles.result} ${styles[`result-${result.type}`]}`}>
-                            {result.title && <div className={styles["result-title"]}>{result.title}</div>}
+                            {result.title && (
+                                <div className={styles["result-title"]}>
+                                    {result.url ? <a href={result.url}>{result.title}</a> : result.title}
+                                </div>
+                            )}
                             {result.header && (
                                 <div className={styles["result-header"]}>
-                                    <Markdown disallowedElements={["p"]} unwrapDisallowed={true}>
-                                        {result.header}
-                                    </Markdown>
+                                    <Markdown>{result.header}</Markdown>
                                 </div>
                             )}
                             {result.image && (
@@ -58,13 +72,21 @@ const getJSXResults = (remoteResult: RemoteResult[]) => (
                                         height="100%"
                                         objectFit="contain"
                                         layout="responsive"
+                                        blurDataURL={blurDataURL}
+                                        placeholder="blur"
                                     />
                                 </div>
                             )}
                             {result.description && (
-                                <div className={styles["result-description"]}>{result.description}</div>
+                                <div className={styles["result-description"]}>
+                                    <Markdown>{result.description}</Markdown>
+                                </div>
                             )}
-                            {result.footer && <div className={styles["result-footer"]}>{result.footer}</div>}
+                            {result.footer && (
+                                <div className={styles["result-footer"]}>
+                                    <Markdown>{result.footer}</Markdown>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>

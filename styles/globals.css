@@ -10,6 +10,8 @@
     --bg-color-dark: rgb(var(--bg-color-dark-raw));
     --bg-color-medium: rgb(var(--bg-color-medium-raw));
     --bg-color-light: rgb(var(--bg-color-light-raw));
+
+    --metadata-color: #dfdfdf;
 }
 
 html,
@@ -26,36 +28,4 @@ body {
 a {
     text-decoration: none;
     color: #88d7fc;
-}
-
-.container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.container div {
-    position: static !important;
-}
-
-.image {
-    position: relative !important;
-    object-fit: cover;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.description {
-    position: relative;
-    margin: 10px 0px 0px 0px;
-    text-transform: capitalize;
-}
-
-.title {
-    margin: 5px 0px;
-}
-
-.metadata {
-    font-size: smaller;
-    margin-bottom: 5px;
 }

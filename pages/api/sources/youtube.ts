@@ -12,42 +12,54 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const videoResults: Result[] = [];
         const channelResults: Result[] = [];
-        const userResults: Result[] = [];
+        const playlistResults: Result[] = [];
 
         searchResults.forEach((result: any) => {
             const resultData = {
                 type: "compact",
                 title: result.snippet.title,
                 image: result.snippet.thumbnails.default.url,
+                url: "",
                 description: result.snippet.description,
                 footer: new Date(result.snippet.publishedAt).toUTCString(), // Markdown
             };
             if (result.id.kind === "youtube#video") {
+                resultData.url = `http://www.youtube.com/watch?v=${result.id.videoId}`;
                 videoResults.push(resultData);
             } else if (result.id.kind === "youtube#channel") {
+                resultData.url = `http://www.youtube.com/channel/${result.id.channelId}`;
                 channelResults.push(resultData);
-            } else if (result.id.kind === "youtube#user") {
-                userResults.push(resultData);
+            } else if (result.id.kind === "youtube#playlist") {
+                resultData.url = `http://www.youtube.com/playlist?list=${result.id.playlistId}`;
+                playlistResults.push(resultData);
             }
         });
 
-        res.json([
-            {
+        const processedResults = [];
+
+        if (videoResults.length > 0) {
+            processedResults.push({
                 title: "Videos",
-                metadata: `No. of Results - ${videoResults.length}`,
+                metadata: `No. of videos - ${videoResults.length}`,
                 results: videoResults,
-            },
-            {
+            });
+        }
+        if (channelResults.length > 0) {
+            processedResults.push({
                 title: "Channels",
-                metadata: `No. of Results - ${channelResults.length}`,
+                metadata: `No. of channels - ${channelResults.length}`,
                 results: channelResults,
-            },
-            {
-                title: "Users",
-                metadata: `No. of Results - ${userResults.length}`,
-                results: userResults,
-            },
-        ]);
+            });
+        }
+        if (playlistResults.length > 0) {
+            processedResults.push({
+                title: "Playlists",
+                metadata: `No. of playlists ${playlistResults.length}`,
+                results: playlistResults,
+            });
+        }
+
+        res.json(processedResults);
     } else {
         res.status(400).json({});
     }

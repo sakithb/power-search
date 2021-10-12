@@ -12,12 +12,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const totalResults = responseData.total;
 
-        const processedResults = searchResults.map((result: any) => ({
+        const processedResults: Result[] = searchResults.map((result: any) => ({
             type: "normal",
             header: `${result.likes} likes`,
             title: `By ${result.user.name}`,
             image: result.urls.full,
             description: result.description,
+            url: result.links.html,
             footer: new Date(result.created_at).toUTCString(), // Markdown
         }));
 

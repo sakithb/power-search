@@ -18,7 +18,6 @@ export interface Result {
     url?: string;
     description?: string;
     image?: string;
-    image_blurhash?: string;
     footer?: string; // Markdown
 }
 export const sourcesContext = createContext<Partial<SourcesIF>>({});

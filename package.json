@@ -9,6 +9,7 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "blurhash": "^1.1.4",
         "next": "11.1.2",
         "node-fetch": "^3.0.0",
         "react": "17.0.2",
@@ -17,6 +18,7 @@
         "react-icons": "^4.2.0",
         "react-loader-spinner": "^4.0.0",
         "react-markdown": "^7.0.1",
+        "rss-parser": "^3.12.0",
         "turndown": "^7.1.1"
     },
     "devDependencies": {
