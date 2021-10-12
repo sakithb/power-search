@@ -18,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             header: `Word count - ${result.wordcount}`, // Markdown
             title: result.title,
             description: turndownService.turndown(result.snippet),
-            url: `https://en.wikipedia.org/wiki/${result.title.replaceAll(" ", "_")}`,
+            url: `https://en.wikipedia.org/wiki/${result.title.replace(/ /g, "_")}`,
             footer: new Date(result.timestamp).toUTCString(), // Markdown
         }));
         res.json([

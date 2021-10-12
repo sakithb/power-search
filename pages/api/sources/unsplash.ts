@@ -8,6 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             `https://api.unsplash.com/search/photos?query=${query}&client_id=${process.env.UNSPLASH_API_KEY}`
         );
         const responseData = await response.json();
+
         const searchResults = responseData.results;
 
         const totalResults = responseData.total;
