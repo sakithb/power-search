@@ -33,6 +33,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             console.log("Refreshing access token");
             await refreshAccessToken();
         }
+        console.log(accessToken);
 
         const response = await fetch(
             `https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist`,
