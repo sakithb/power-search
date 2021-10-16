@@ -3,8 +3,6 @@ import { Result } from "../../_app";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.query.q) {
-        console.log(process.env.SPOTIFY_KEY);
-
         const query = encodeURIComponent(req.query.q as string);
         const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist`, {
             headers: {
