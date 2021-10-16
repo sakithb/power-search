@@ -167,17 +167,19 @@ const RemoteResult: React.FC<{ name: string }> = ({ name }) => {
 
     useEffect(() => {
         (async () => {
-            const response = await fetch(`/api/sources/${name}?q=${query}`);
-            if (response.ok) {
-                const remoteResult: SubResultIF[] = await response.json();
+            if (query) {
+                const response = await fetch(`/api/sources/${name}?q=${query}`);
+                if (response.ok) {
+                    const remoteResult: SubResultIF[] = await response.json();
 
-                const jsxContent: JSX.Element = (
-                    <Results remoteResult={remoteResult} />
-                );
+                    const jsxContent: JSX.Element = (
+                        <Results remoteResult={remoteResult} />
+                    );
 
-                setContent(jsxContent);
-            } else if (response.status === 404) {
-                setNotFound(true);
+                    setContent(jsxContent);
+                } else if (response.status === 404) {
+                    setNotFound(true);
+                }
             }
         })();
     }, [name, query]);
