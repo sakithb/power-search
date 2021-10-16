@@ -40,64 +40,71 @@ const useBlurHash = (blurHash: string, width = 500, height = 500) => {
     return canvas.toDataURL();
 };
 
-const getJSXResults = (remoteResult: RemoteResult[]) => (
-    <div className={styles.results}>
-        {remoteResult.map((subresult, index) => (
-            <div key={index} className={styles.subresult}>
-                <div className={styles["subresult-title"]}>{subresult.title}</div>
-                <div className={styles["subresult-metadata"]}>
-                    <Markdown>{subresult.metadata}</Markdown>
+const ResultJSXContainer: React.FC<{ remoteResult: RemoteResult[] }> = ({ remoteResult }) => {
+    return (
+        <div className={styles.results}>
+            {remoteResult.map((subresult, index) => (
+                <div key={index} className={styles.subresult}>
+                    <div className={styles["subresult-title"]}>{subresult.title}</div>
+                    <div className={styles["subresult-metadata"]}>
+                        <Markdown>{subresult.metadata}</Markdown>
+                    </div>
+                    <div className={styles["subresult-results"]}>
+                        {subresult.results.map((result, resultIndex) => (
+                            <div
+                                key={resultIndex}
+                                className={`${styles.result} ${styles[`result-${result.type}`]}`}>
+                                {result.title && (
+                                    <div className={styles["result-title"]}>
+                                        {result.url ? <a href={result.url}>{result.title}</a> : result.title}
+                                    </div>
+                                )}
+                                {result.header && (
+                                    <div className={styles["result-header"]}>
+                                        <Markdown>{result.header}</Markdown>
+                                    </div>
+                                )}
+                                {result.image && (
+                                    <div className={styles["result-image"]}>
+                                        <Image
+                                            src={`/api/imageproxy?url=${encodeURIComponent(result.image)}`}
+                                            alt={result.image}
+                                            width="100%"
+                                            height="100%"
+                                            layout={result.type === "normal" ? "responsive" : "fixed"}
+                                            blurDataURL={blurDataURL}
+                                            placeholder="blur"
+                                        />
+                                    </div>
+                                )}
+                                {result.description && (
+                                    <div className={styles["result-description"]}>
+                                        <Markdown>
+                                            {result.description.length > 300
+                                                ? result.description.substring(0, 300) + "..."
+                                                : result.description}
+                                        </Markdown>
+                                    </div>
+                                )}
+                                {result.footer && (
+                                    <div className={styles["result-footer"]}>
+                                        <Markdown>{result.footer}</Markdown>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <div className={styles["subresult-results"]}>
-                    {subresult.results.map((result, resultIndex) => (
-                        <div
-                            key={resultIndex}
-                            className={`${styles.result} ${styles[`result-${result.type}`]}`}>
-                            {result.title && (
-                                <div className={styles["result-title"]}>
-                                    {result.url ? <a href={result.url}>{result.title}</a> : result.title}
-                                </div>
-                            )}
-                            {result.header && (
-                                <div className={styles["result-header"]}>
-                                    <Markdown>{result.header}</Markdown>
-                                </div>
-                            )}
-                            {result.image && (
-                                <div className={styles["result-image"]}>
-                                    <Image
-                                        src={`/api/imageproxy?url=${encodeURIComponent(result.image)}`}
-                                        alt={result.image}
-                                        width="100%"
-                                        height="100%"
-                                        objectFit="contain"
-                                        layout="responsive"
-                                        blurDataURL={blurDataURL}
-                                        placeholder="blur"
-                                    />
-                                </div>
-                            )}
-                            {result.description && (
-                                <div className={styles["result-description"]}>
-                                    <Markdown>{result.description}</Markdown>
-                                </div>
-                            )}
-                            {result.footer && (
-                                <div className={styles["result-footer"]}>
-                                    <Markdown>{result.footer}</Markdown>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        ))}
-    </div>
-);
+            ))}
+        </div>
+    );
+};
 
 const RemoteResult: React.FC<RemoteResultProps> = ({ name }) => {
     const query = useContext(queryContext);
+
     const [content, setContent] = useState<JSX.Element>();
+    const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -105,13 +112,15 @@ const RemoteResult: React.FC<RemoteResultProps> = ({ name }) => {
             if (response.ok) {
                 const remoteResult: RemoteResult[] = await response.json();
                 console.log(remoteResult);
-                const jsxContent: JSX.Element = getJSXResults(remoteResult);
+                const jsxContent: JSX.Element = <ResultJSXContainer remoteResult={remoteResult} />;
                 setContent(jsxContent);
+            } else if (response.status === 404) {
+                setNotFound(true);
             }
         })();
     }, [name, query]);
 
-    return content ? <Result name={name}>{content}</Result> : <ResultFallback />;
+    return !notFound ? content ? <Result name={name}>{content}</Result> : <ResultFallback /> : <></>;
 };
 
 export default RemoteResult;

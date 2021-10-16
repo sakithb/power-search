@@ -101,8 +101,8 @@
 
 .result-compact {
     display: grid;
-    grid-template-columns: 30% auto;
-    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    grid-auto-rows: min-content;
     grid-template-areas:
         "image header"
         "image title"
@@ -123,6 +123,7 @@
 }
 
 .result-description {
+    position: relative;
     font-size: 0.95rem;
     color: #fcfcfc;
     margin: 5px 0px;
@@ -143,13 +144,15 @@
     grid-area: image;
     padding: 5px;
     height: 100%;
+    width: 100%;
 }
-
+/* 
 .result-image div {
     width: 100%;
     height: 100%;
-}
+} */
 
+/* 
 .result-image img {
     margin: 0 !important;
     width: 100% !important;
@@ -158,4 +161,4 @@
     max-width: none !important;
     min-height: auto !important;
     max-height: none !important;
-}
+} */
