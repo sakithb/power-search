@@ -34,7 +34,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         res.json([
             {
                 title: "Search results",
-                metadata: "",
+                metadata: `No. of results - ${processedResults.length}`,
                 results: processedResults,
             },
         ]);

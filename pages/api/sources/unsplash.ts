@@ -5,7 +5,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.query.q) {
         const query = encodeURIComponent(req.query.q as string);
         const response = await fetch(
-            `https://api.unsplash.com/search/photos?query=${query}&client_id=${process.env.UNSPLASH_API_KEY}`
+            `https://api.unsplash.com/search/photos?query=${query}&client_id=${process.env.UNSPLASH_KEY}`
         );
         const responseData = await response.json();
 
