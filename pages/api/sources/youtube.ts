@@ -7,7 +7,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         const response = await fetch(
             `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&maxResults=10&key=${process.env.GOOGLE_KEY}`
         );
+
         const responseData = await response.json();
+
         const searchResults = responseData.items;
 
         const videoResults: Result[] = [];

@@ -31,18 +31,6 @@
     font-size: 1.2rem;
 }
 
-@media screen and (min-width: 768px) {
-    .container {
-        width: 100%;
-    }
-    .image {
-        padding: 3px;
-    }
-    .header {
-        padding: 4px;
-    }
-}
-
 .content {
     display: flex;
     flex-direction: column;
@@ -51,7 +39,7 @@
     color: #fff;
 }
 
-/* Result Styles */
+/* Inner content of a result */
 .results {
     display: flex;
     flex-direction: column;
@@ -63,22 +51,24 @@
     flex-direction: column;
 }
 
-.subresult-title {
+.subresultTitle {
     font-weight: bold;
     font-size: 1.1rem;
 }
 
-.subresult-metadata {
+.subresultMetadata {
     font-size: 0.9rem;
     color: var(--metadata-color);
 }
 
-.subresult-results {
+.subresultResults {
     display: flex;
     flex-direction: column;
 }
 
 .result {
+    display: flex;
+    flex-direction: column;
     background: var(--bg-color-dark);
     padding: 8px;
     border-radius: 8px;
@@ -94,35 +84,29 @@
     margin: 5px 0px;
 }
 
-.result-normal {
+.resultCompact {
+    flex-direction: row;
+}
+
+.resultCompactLeftWrapper,
+.resultCompactRightWrapper {
     display: flex;
     flex-direction: column;
 }
 
-.result-compact {
-    display: grid;
-    grid-template-columns: min-content minmax(70%, auto);
-    grid-auto-rows: min-content;
-    grid-template-areas:
-        "image header"
-        "image title"
-        "image description"
-        "image footer";
-}
-
-.result-header {
+.resultHeader {
     font-size: 0.9rem;
     color: var(--metadata-color);
     grid-area: header;
 }
 
-.result-title {
+.resultTitle {
     font-size: 1rem;
     font-weight: 500;
     grid-area: title;
 }
 
-.result-description {
+.resultDescription {
     position: relative;
     font-size: 0.95rem;
     color: #fcfcfc;
@@ -130,24 +114,24 @@
     grid-area: description;
 }
 
-.result-normal .result-description {
+.resultNormal .resultDescription {
     padding: 0px 5px;
 }
 
-.result-footer {
+.resultFooter {
     font-size: 0.9rem;
     color: var(--metadata-color);
     grid-area: footer;
 }
 
-.result-image {
+.resultImage {
     grid-area: image;
     padding: 5px;
     height: 100%;
     width: 100%;
 }
 
-.no-results {
+.noResults {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -155,4 +139,16 @@
     align-items: center;
     justify-content: center;
     font-size: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    .image {
+        padding: 3px;
+    }
+    .header {
+        padding: 4px;
+    }
 }

@@ -52,7 +52,9 @@ const Home: NextPage = () => {
                 </div>
             </div>
             <div className={styles.captionWrapper}>
-                <span className={styles.captionStart}>Search everywhere...</span>
+                <span className={styles.captionStart}>
+                    Search everywhere...
+                </span>
                 <div className={styles.captionIcons}>
                     {Object.keys(sources).map((source, index) => {
                         const icon = sources[source];
@@ -61,14 +63,22 @@ const Home: NextPage = () => {
                                 key={index}
                                 className={styles.captionIcon}
                                 onMouseEnter={(event) => {
-                                    (event.target as HTMLDivElement).style.background =
-                                        (event.target as HTMLDivElement).getAttribute("data-color") || "";
+                                    (
+                                        event.target as HTMLDivElement
+                                    ).style.background =
+                                        (
+                                            event.target as HTMLDivElement
+                                        ).getAttribute("data-color") || "";
                                 }}
                                 onMouseLeave={(event) => {
-                                    (event.target as HTMLDivElement).style.background = "none";
+                                    (
+                                        event.target as HTMLDivElement
+                                    ).style.background = "none";
                                 }}
                                 data-color={icon?.color}
-                                dangerouslySetInnerHTML={{ __html: icon?.svg as string }}></div>
+                                dangerouslySetInnerHTML={{
+                                    __html: icon?.svg as string,
+                                }}></div>
                         );
                     })}
                 </div>

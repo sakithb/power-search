@@ -14,7 +14,11 @@
             rgba(160, 160, 160, 0.3) 50%,
             rgba(160, 160, 160, 0) 100%
         ),
-        linear-gradient(to right, var(--bg-color-medium), var(--bg-color-medium));
+        linear-gradient(
+            to right,
+            var(--bg-color-medium),
+            var(--bg-color-medium)
+        );
     background-position: -100% 0, 0 0;
     background-size: 50% 100%, 100% 100%;
     animation: loading 1.5s infinite;

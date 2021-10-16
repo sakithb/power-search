@@ -20,6 +20,7 @@ export interface Result {
     image?: string;
     footer?: string; // Markdown
 }
+
 export const sourcesContext = createContext<Partial<SourcesIF>>({});
 
 const PowerSearch = ({ Component, pageProps }: AppProps) => {

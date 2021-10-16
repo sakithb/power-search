@@ -76,22 +76,6 @@
     margin-right: 10px;
 }
 
-.optionsDropdown {
-    width: 50%;
-}
-
-.optionsDropdown select {
-    padding: 5px 10px;
-    background: var(--bg-color-dark);
-    color: #fff;
-    fill: #fff;
-    border: none;
-    outline: none;
-    border-right: 10px solid var(--bg-color-dark);
-    border-radius: 99px;
-    width: 100%;
-}
-
 .results {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -122,8 +106,5 @@
     .options {
         justify-content: initial;
         padding-left: 20px;
-    }
-    .optionsDropdown {
-        width: auto;
     }
 }

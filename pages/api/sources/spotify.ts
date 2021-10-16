@@ -1,14 +1,46 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Result } from "../../_app";
 
+const accessToken = {
+    token: "",
+    created: 0,
+};
+
+const refreshAccessToken = async () => {
+    const response = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: `Basic ${Buffer.from(
+                `2d09118801bb430385944b31aa11db62:${process.env.SPOTIFY_SECRET}`
+            ).toString("base64")}`,
+        },
+        body: new URLSearchParams({ grant_type: "client_credentials" }),
+    });
+
+    const responseData = await response.json();
+
+    accessToken.token = responseData.access_token;
+    accessToken.created = Date.now();
+};
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.query.q) {
         const query = encodeURIComponent(req.query.q as string);
-        const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist`, {
-            headers: {
-                Authorization: `Bearer ${process.env.SPOTIFY_KEY}`,
-            },
-        });
+
+        if (Date.now() - accessToken.created >= 3600000) {
+            await refreshAccessToken();
+        }
+
+        const response = await fetch(
+            `https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist`,
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken.token}`,
+                },
+            }
+        );
+
         const responseData = await response.json();
         const searchResults: any[] = [];
 
@@ -30,7 +62,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 url: result.external_urls.spotify,
             };
 
-            const images = result.images || (result.album && result.album.images);
+            const images =
+                result.images || (result.album && result.album.images);
             if (images && images.length > 0) {
                 resultData.image = images[0].url;
             }
@@ -40,7 +73,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 resultData.footer = result.genres.join(", ");
                 artistResults.push(resultData);
             } else if (result.type === "track") {
-                resultData.header = `By ${result.artists.map((a: any) => a.name).join(", ")}`;
+                resultData.header = `By ${result.artists
+                    .map((a: any) => a.name)
+                    .join(", ")}`;
 
                 if (result.album) {
                     resultData.header += ` (${result.album.name})`;
@@ -53,8 +88,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
                 trackResults.push(resultData);
             }
-
-            console.log(result);
         });
 
         const processedResults = [];
