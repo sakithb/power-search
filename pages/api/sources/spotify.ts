@@ -28,12 +28,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.query.q) {
         const query = encodeURIComponent(req.query.q as string);
 
-        console.log(accessToken);
         if (Date.now() - accessToken.created >= 3600000) {
-            console.log("Refreshing access token");
             await refreshAccessToken();
         }
-        console.log(accessToken);
 
         const response = await fetch(
             `https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist`,
