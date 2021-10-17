@@ -1,8 +1,8 @@
 import styles from "../styles/Home.module.css";
 
-import { NextPage } from "next";
-import { sourcesContext, SourcesIF } from "./_app";
 import { FiSearch } from "react-icons/fi";
+import { NextPage } from "next";
+import { sourcesContext } from "./_app";
 
 import { useRouter } from "next/dist/client/router";
 import { useRef } from "react";

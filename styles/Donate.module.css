@@ -1,0 +1,114 @@
+.container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.2s;
+    opacity: 0;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-color-dark);
+    transform: translateY(-100vh);
+    transition: transform 0.2s;
+    color: #fff;
+    width: 50%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background: var(--bg-color-medium);
+    padding: 10px;
+}
+
+.headerTitle {
+    font-size: 1.5rem;
+}
+
+.headerCloseButton {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.headerCloseButton:hover {
+    transform: scale(1.1);
+}
+
+.body {
+    display: grid;
+    grid-template-columns: min-content;
+    justify-content: center;
+    padding: 10px;
+}
+
+.donateEntry {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 8px 10px;
+    margin: 10px 0px;
+    background: var(--bg-color-medium);
+    overflow: hidden;
+}
+
+.donateEntryName {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    height: 100%;
+    background: var(--primary-color);
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+}
+
+.donateEntry:hover .donateEntryName {
+    transform: translateX(0%);
+}
+
+.donateEntryIcon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.donateEntryText {
+    display: inline-flex;
+    align-items: cen;
+    margin: 0px 8px;
+}
+
+.donateEntryCopyIcon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.donateEntryCopyIcon:hover {
+    transform: scale(1.1);
+}
+
+.donateEntryCopiedText {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    top: 0;
+    left: 100%;
+    padding: 10px;
+    height: 100%;
+    background: var(--primary-color);
+    transition: transform 0.2s;
+}
