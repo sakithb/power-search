@@ -67,13 +67,6 @@ const Search: NextPage = () => {
                             <FiSearch />
                         </button>
                     </div>
-                    <button
-                        className={styles.donateButton}
-                        onClick={() => {
-                            setModalOpen(!modalOpen);
-                        }}>
-                        <FaHeart /> <span>Support</span>
-                    </button>
                 </div>
                 <div className={styles.options}>
                     <div className={styles.optionsTitle}>
@@ -88,6 +81,14 @@ const Search: NextPage = () => {
                 {modalOpen && (
                     <Donate modalOpen={modalOpen} setModalOpen={setModalOpen} />
                 )}
+                {/* 
+                <button
+                    className={styles.donateButton}
+                    onClick={() => {
+                        setModalOpen(!modalOpen);
+                    }}>
+                    <FaHeart /> <span>Support</span>
+                </button> */}
             </div>
         </queryContext.Provider>
     );
