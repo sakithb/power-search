@@ -17,7 +17,7 @@
     transform: translateY(-100vh);
     transition: transform 0.2s;
     color: #fff;
-    width: 50%;
+    width: 90%;
 }
 
 .header {
@@ -58,6 +58,7 @@
     margin: 10px 0px;
     background: var(--bg-color-medium);
     overflow: hidden;
+    max-width: calc(90vw - 20px);
 }
 
 .donateEntryName {
@@ -85,8 +86,12 @@
 
 .donateEntryText {
     display: inline-flex;
-    align-items: cen;
+    flex-shrink: 1;
+    align-items: center;
     margin: 0px 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .donateEntryCopyIcon {

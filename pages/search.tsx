@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { createContext } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiX } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { sourcesContext } from "./_app";
 
@@ -23,6 +23,7 @@ const Search: NextPage = () => {
     const router = useRouter();
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [showSupport, setShowSupport] = useState(true);
 
     const { q: query } = router.query as { [q: string]: string };
 
@@ -81,14 +82,21 @@ const Search: NextPage = () => {
                 {modalOpen && (
                     <Donate modalOpen={modalOpen} setModalOpen={setModalOpen} />
                 )}
-                {/* 
-                <button
-                    className={styles.donateButton}
-                    onClick={() => {
-                        setModalOpen(!modalOpen);
-                    }}>
-                    <FaHeart /> <span>Support</span>
-                </button> */}
+                {showSupport && (
+                    <div className={styles.donateButtonContainer}>
+                        <FiX
+                            className={styles.donateButtonClose}
+                            onClick={() => setShowSupport(false)}
+                        />
+                        <button
+                            className={styles.donateButton}
+                            onClick={() => {
+                                setModalOpen(!modalOpen);
+                            }}>
+                            <FaHeart /> <span>Support</span>
+                        </button>
+                    </div>
+                )}
             </div>
         </queryContext.Provider>
     );

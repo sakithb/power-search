@@ -62,6 +62,19 @@
     transform: scale(0.9);
 }
 
+.donateButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.donateButtonClose {
+    margin-right: auto;
+    color: #fff;
+    cursor: pointer;
+}
+
 .donateButton {
     display: inline-flex;
     align-items: center;
@@ -72,8 +85,8 @@
     border-radius: 99px;
     background: var(--primary-color);
     padding: 8px 15px;
-    margin-left: auto;
     cursor: pointer;
+    margin-right: auto;
 }
 
 .donateButton:hover {
