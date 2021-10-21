@@ -143,3 +143,10 @@
         padding-left: 20px;
     }
 }
+
+@media (orientation: landscape) {
+    .container {
+        min-height: 100vh;
+        height: auto;
+    }
+}
