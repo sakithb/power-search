@@ -23,7 +23,7 @@ const Search: NextPage = () => {
     const router = useRouter();
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [showSupport, setShowSupport] = useState(true);
+    const [showSupport, setShowSupport] = useState(false);
 
     const { q: query } = router.query as { [q: string]: string };
 
@@ -70,18 +70,14 @@ const Search: NextPage = () => {
                     </div>
                 </div>
                 <div className={styles.options}>
-                    <div className={styles.optionsTitle}>
-                        Search results for {`"${query}"`}
-                    </div>
+                    <div className={styles.optionsTitle}>Search results for {`"${query}"`}</div>
                 </div>
                 <div className={styles.results}>
                     {Object.keys(sources).map((source, index) => (
                         <RemoteResult key={index} name={source} />
                     ))}
                 </div>
-                {modalOpen && (
-                    <Donate modalOpen={modalOpen} setModalOpen={setModalOpen} />
-                )}
+                {modalOpen && <Donate modalOpen={modalOpen} setModalOpen={setModalOpen} />}
                 {showSupport && (
                     <div className={styles.donateButtonContainer}>
                         <FiX
