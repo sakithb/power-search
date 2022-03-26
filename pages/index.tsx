@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.css";
 
 import { FiSearch } from "react-icons/fi";
-import { NextPage } from "next";
+import { NextPage, Head } from "next";
 import { sourcesContext } from "./_app";
 
 import { useRouter } from "next/dist/client/router";
@@ -27,6 +27,12 @@ const Home: NextPage = () => {
 
     return (
         <div className={styles.container}>
+            <Head>
+                <script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3216749700593180"
+                    crossorigin="anonymous"></script>
+            </Head>
             <div className={styles.searchWrapper}>
                 <span className={styles.title}>powersearch</span>
 
@@ -52,9 +58,7 @@ const Home: NextPage = () => {
                 </div>
             </div>
             <div className={styles.captionWrapper}>
-                <span className={styles.captionStart}>
-                    Search everywhere...
-                </span>
+                <span className={styles.captionStart}>Search everywhere...</span>
                 <div className={styles.captionIcons}>
                     {Object.keys(sources).map((source, index) => {
                         const icon = sources[source];
@@ -63,17 +67,13 @@ const Home: NextPage = () => {
                                 key={index}
                                 className={styles.captionIcon}
                                 onMouseEnter={(event) => {
-                                    (
-                                        event.target as HTMLDivElement
-                                    ).style.background =
-                                        (
-                                            event.target as HTMLDivElement
-                                        ).getAttribute("data-color") || "";
+                                    (event.target as HTMLDivElement).style.background =
+                                        (event.target as HTMLDivElement).getAttribute(
+                                            "data-color"
+                                        ) || "";
                                 }}
                                 onMouseLeave={(event) => {
-                                    (
-                                        event.target as HTMLDivElement
-                                    ).style.background = "none";
+                                    (event.target as HTMLDivElement).style.background = "none";
                                 }}
                                 data-color={icon?.color}
                                 dangerouslySetInnerHTML={{
