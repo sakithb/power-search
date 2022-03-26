@@ -33,7 +33,7 @@ const Home: NextPage = () => {
                 <script
                     async
                     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3216749700593180"
-                    crossorigin="anonymous"></script>
+                    crossOrigin="anonymous"></script>
             </Head>
             <div className={styles.searchWrapper}>
                 <span className={styles.title}>powersearch</span>
