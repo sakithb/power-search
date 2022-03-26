@@ -1,12 +1,14 @@
 import styles from "../styles/Home.module.css";
 
 import { FiSearch } from "react-icons/fi";
-import { NextPage, Head } from "next";
+import { NextPage } from "next";
 import { sourcesContext } from "./_app";
 
 import { useRouter } from "next/dist/client/router";
 import { useRef } from "react";
 import { useContext } from "react";
+
+import Head from "next/head";
 
 const Home: NextPage = () => {
     const sources = useContext(sourcesContext);
