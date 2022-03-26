@@ -1,4 +1,4 @@
-[View the website](https://power-search.vercel.app/)
+[View the website](https://powersearch.vercel.app/)
 
 ### What is PowerSearch?
 PowerSearch is a website aiming to combine several search APIs of popular services into one interface.
