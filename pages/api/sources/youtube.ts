@@ -9,6 +9,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         );
 
         const responseData = await response.json();
+        console.log(responseData);
 
         const searchResults = responseData.items;
 
